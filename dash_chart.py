@@ -1,8 +1,11 @@
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 import pandas as pd
+from pathlib import Path
 
-df = pd.read_csv("output.csv")
+BASE_DIR = Path(__file__).resolve().parent
+
+df = pd.read_csv(BASE_DIR / "output.csv")
 
 app = Dash(__name__)
 
@@ -10,12 +13,19 @@ app.layout = html.Div([
 
     html.H1(
         "Sales Dashboard",
+        id="title",
         style={
             "textAlign": "center",
             "color": "white"
         }),
     dcc.Graph(id="graph"),
-    html.H3("Choose a region:"),
+
+    html.H3("Choose a region:",
+            id="graph-title",
+            style={
+                "textAlign": "left",
+                "color": "white"
+            }),
     dcc.RadioItems(
         id="location",
         options=[
