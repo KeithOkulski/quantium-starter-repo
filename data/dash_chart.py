@@ -4,8 +4,6 @@ import plotly.express as px
 import pandas as pd
 
 df = pd.read_csv("output.csv")
-# Create line chart
-
 fig = px.line(
     df,
     x="Date",
@@ -18,8 +16,6 @@ fig.update_layout(
     height=600
 )
 
-
-# Dash app
 app = Dash(__name__)
 
 app.layout = html.Div([
